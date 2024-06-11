@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCE6Mq91rCGa5gtU4mk92HdvYe+M/SXH301p5Ily+dN9+nJOZ"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar bg-dark" data-bs-theme="dark">
+    <div style="padding-left: 20px">
+        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" th:href="@{/product}">Product</a>
+    </div>
+</nav>
+<br>
+<div layout:fragment="content" class="container body-content">
+    <h2>Edit Product</h2>
+    <form th:action="@{/product/edit}" th:object="${product}" method="post" class="form" enctype="multipart/form-data" >
+        <input type="hidden" th:field="${product.id}" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" th:field="${product.name}" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <img class="form-control" th:src="@{/images/__${image}__}" th:placeholder="image"/>
+            <input type="text" class="form-control" type="file" id="image" name="imageProduct" accept="image/png, image/jpeg">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" th:field="${product.price}" placeholder="Enter price">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>
